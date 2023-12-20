@@ -1,11 +1,5 @@
-<main class="main-container">
-  <div class="product-card">
-    <figure>
-      <img src="favicon.ico">
-    </figure>
-    <div class="product-information">
-      <p>Chelsea Boots</p>
-      <p>80 euro</p>
-    </div>
-  </div>
+<main>
+  <section *ngFor="let products of productList">
+    <app-product-item [product]="products"></app-product-item>
+  </section>
 </main>

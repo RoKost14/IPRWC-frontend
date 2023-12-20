@@ -1,3 +1,26 @@
+.body{
+  margin: 0;
+}
 .app-layout {
-  background-color: #EEE7DA;
+  display: flex;
+  flex-direction: column;
+
+  .app-layout__main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+
+    .app-layout__background {
+      background-color: #EEE7DA;
+      flex: 1;
+      width: 100%;
+    }
+
+    .app-layout__content {
+      background-color: #EEE7DA;
+      height: 100vh;
+    }
+
+  }
 }

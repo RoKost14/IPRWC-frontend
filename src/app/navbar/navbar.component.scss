@@ -1,0 +1,42 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.top-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  background-color: #5B9E48;
+  position: fixed;
+  height: 90px;
+  top: 0;
+  left: 0;
+
+  p{
+    color: white;
+    align-items: flex-start;
+    margin-top: 0px;
+  }
+}
+.site-logo{
+  padding: 10px;
+  margin-top: 10px;
+;
+}
+.side-bar {
+  position: fixed;
+  right: 0;
+  background-color: #5B9E48;
+  top: 0;
+  width: 90px;
+  height: 100%;
+}
+
+.site-logo{
+  width: 50px;
+  height: 50px;
+}

@@ -1,0 +1,32 @@
+<div class="main-container">
+  <div class="create-container">
+    <form class="size-form" (ngSubmit)="addSizeAndStock()">
+
+      <div *ngFor="let size of standardSizes">
+        {{ size }}
+        <input
+          [(ngModel)]="selectedSizes[size]"
+          autocomplete="off"
+          id="size"
+          name="size"
+          placeholder="Maat"
+          required
+          type="checkbox"
+          [value]="size"
+        />
+        <input
+          [(ngModel)]="sizeStock[size]"
+          autocomplete="off"
+          id="stock"
+          name="stock"
+          placeholder="Voorraad"
+          required
+          type="number"
+        />
+      </div>
+      <button type="submit">Log in</button>
+    </form>
+  </div>
+</div>
+
+

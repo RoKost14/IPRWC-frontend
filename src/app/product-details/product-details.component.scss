@@ -1,0 +1,46 @@
+.main{
+  margin: 100px;
+  background: white;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: row;
+}
+.left-side {
+  flex: 0.5;
+  padding: 10px;
+}
+
+.size-picker{
+  width: 80%;
+}
+.add-to-card{
+  width: 80%;
+}
+
+.right-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  h1{
+  }
+}
+.add-to-card{
+  background: #5B9E48;
+  border-style: none;
+  border-radius: 8px;
+  height: 40px;
+  color: white;
+  &:hover{
+    opacity: 80%;
+  }
+}
+.product-description{
+  margin-left: 30px;
+  display: flex;
+  //justify-content: center;
+  flex-direction: column;
+}

@@ -1,0 +1,25 @@
+<div class="main">
+  <div class="left-side">
+    <figure>
+      <img src="../../assets/chelsea-front.jpg" alt="Product Image">
+    </figure>
+    <div class="product-description">
+    </div>
+  </div>
+  <div class="right-side">
+    <h1>{{product.name}}</h1>
+      {{product.description}}
+    <label>Kies een maat</label>
+    <select class="size-picker" #selectedSize>
+      <option *ngFor="let size of product.sizes" [value]="size.id">
+        <p>{{size.size}}</p>
+
+        <p *appAdminOnly> (voorraad: {{size.stock}})</p>
+      </option>
+    </select>
+    <div class="price">
+      €{{product.price}} ,-
+    </div>
+    <button class="add-to-card" (click)="addToCart(selectedSize.value)">Add To Cart</button>
+  </div>
+</div>

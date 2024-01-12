@@ -1,11 +1,22 @@
 <div class="main-container">
-    <div class="top-header">
-  <figure>
-    <img class="site-logo" src="/assets/leather-chelsea-boots-2.png" alt="logo">
-    <p>LenteLaars</p>
-  </figure>
-</div>
-<!--  <div class="side-bar">-->
-
+  <div class="top-header">
+    <figure>
+      <img class="site-logo" src="/assets/leather-chelsea-boots-2.png" alt="logo" [routerLink]="''">
+      <p>LenteLaars</p>
+    </figure>
+    <div class="left-side">
+      <figure>
+        <img *appAdminOnly class="log-in" src="/assets/plus.png" alt="add" [routerLink]="'/create'" >
+      </figure>
+      <figure>
+        <img class="log-in" src="/assets/user.png" alt="log-in" (click)="logInButton()">
+      </figure>
+      <figure>
+        <img class="shopping-cart" src="/assets/shopping-cart.png" alt="shopping-cart" [routerLink]="'/shopping-cart'">
+      </figure>
+    </div>
   </div>
+  <!--  <div class="side-bar">-->
+
+</div>
 <!--</div>-->

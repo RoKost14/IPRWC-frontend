@@ -1,35 +1,36 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule, NgIf} from "@angular/common";
 import {ProductItemComponent} from "./product-item/product-item.component";
-import {Product} from "../../product.model";
-import {ApiService} from "../../shared/api.service";
+import {Product} from "../product.model";
+import {ApiService} from "../shared/api.service";
 
 @Component({
   selector: 'app-product',
   standalone: true,
   imports: [CommonModule,
-    NgIf, ProductItemComponent
+    NgIf, ProductItemComponent,
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
 })
 export class ProductComponent implements OnInit{
-  public productList: Product[] = [];
+  public productList: Product[] = [
+  ];
 
   constructor(private apiService: ApiService) {
   }
 
   ngOnInit() {
-    // this.loadAllProducts()
+    this.loadAllProducts()
   }
 
-  // loadAllProducts(): void{
-  //   this.apiService.getAllProducts().subscribe({
-  //     next: (data) => {
-  //       this.productList = data
-  //     }
-  //   });
-  //
-  // }
+  loadAllProducts(): void{
+    this.apiService.getAllProducts().subscribe({
+      next: (data) => {
+        this.productList = data
+      }
+    });
+
+  }
 
 }

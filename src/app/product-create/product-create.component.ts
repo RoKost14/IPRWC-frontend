@@ -19,6 +19,7 @@ import {Router, RouterModule} from "@angular/router";
 })
 export class ProductCreateComponent {
   name: string = "";
+  image: string = "";
   description: string = ""
   price: number = 0
   id!: string;
@@ -27,7 +28,7 @@ export class ProductCreateComponent {
   constructor(private apiService: ApiService, private toastr: ToastrService, private router: Router) {
   }
   createProduct(){
-    this.apiService.createProduct({name: this.name, description: this.description, price: this.price})
+    this.apiService.createProduct({name: this.name, description: this.description, price: this.price, image: this.image})
       .subscribe({
       next: (data) => {
 

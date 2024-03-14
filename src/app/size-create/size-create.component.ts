@@ -43,10 +43,10 @@ export class SizeCreateComponent implements OnInit{
     });
     this.populateSizeArray()
   }
-  addSizeAndStock() {
+  addSize() {
     for (let size in this.selectedSizes) {
       if (this.selectedSizes[size]) {
-        this.selectedSizesAndStock.push({size: Number(size), stock: this.sizeStock[size]});
+        this.selectedSizesAndStock.push({size: Number(size)});
       }
     }
 

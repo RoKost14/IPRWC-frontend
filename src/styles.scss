@@ -1,5 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@import "ngx-toastr/toastr";
+
 body{
   margin: 0;
   background-color: #EEE7DA;
+}
+.toast-container{
+  margin-top: 80px;
+  position: absolute;
 }

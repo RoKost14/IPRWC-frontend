@@ -1,7 +1,7 @@
 <div class="main">
   <div class="left-side">
     <figure>
-      <img src="../../assets/chelsea-front.jpg" alt="Product Image">
+      <img [src]="product.image" alt="Product Image">
     </figure>
     <div class="product-description">
     </div>
@@ -14,7 +14,6 @@
       <option *ngFor="let size of product.sizes" [value]="size.id">
         <p>{{size.size}}</p>
 
-        <p *appAdminOnly> (voorraad: {{size.stock}})</p>
       </option>
     </select>
     <div class="price">

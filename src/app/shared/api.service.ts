@@ -5,6 +5,7 @@ import {map, tap} from 'rxjs';
 import {Product} from "../product.model";
 import {AuthService} from "./auth.service";
 import {SizeCreate} from "../size-create.model";
+import {CartPayload} from "../cart-payload.model";
 
 const API_URL = 'http://localhost:8080/api/v1';
 
@@ -14,7 +15,6 @@ const API_URL = 'http://localhost:8080/api/v1';
 export class ApiService {
   constructor(private http: HttpClient, private authService: AuthService) {
   }
-
 
   PostLogin(payload: { username: string; password: string }) {
     return this.http.post(`${API_URL}/auth/login`, payload).pipe(
@@ -48,6 +48,7 @@ export class ApiService {
       map((data) => {
         return z.object({
           id: z.string(),
+          image: z.string(),
           name: z.string(),
           description: z.string(),
           price: z.number(),
@@ -55,7 +56,6 @@ export class ApiService {
             z.object({
               id: z.string(),
               size: z.number(),
-              stock: z.number(),
             })
           )
         }).parse(data);
@@ -71,13 +71,13 @@ export class ApiService {
           z.object({
             id: z.string(),
             name: z.string(),
+            image: z.string(),
             description: z.string(),
             price: z.number(),
             sizes: z.array(
               z.object({
                 id: z.string(),
                 size: z.number(),
-                stock: z.number(),
               })
             )
           })
@@ -86,7 +86,7 @@ export class ApiService {
       }))
   }
 
-  createProduct(payload: { name: string; description: string; price: number }) {
+  createProduct(payload: { name: string; description: string; price: number; image: string }) {
     let token = this.authService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http
@@ -94,6 +94,22 @@ export class ApiService {
         headers: headers,
         observe: 'response',
       })
+  }
+  editProduct(uuid: string, payload: { name: string; description: string; price: number; image: string }) {
+    let token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put(`${API_URL}/products/update/${uuid}`, payload, {
+      headers: headers,
+      observe: 'response'
+    })
+  }
+  deleteProduct(uuid: string) {
+    let token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${API_URL}/products/delete/${uuid}`, {
+      headers: headers,
+      observe: 'response'
+    })
   }
 
   createSizeInBulk(uuid: string, payload: SizeCreate[]) {
@@ -112,7 +128,6 @@ export class ApiService {
         return z.array(
           z.object({
             size: z.number(),
-            stock: z.number(),
           })
         ).parse(data.sizes);
       })
@@ -131,11 +146,11 @@ export class ApiService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(`${API_URL}/`)
   }
-  saveCartForUser(uuid: string, cartItems: Product[]) {
+  addItemToCart(uuid: string, cartItems: CartPayload) {
     let token = this.authService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http
-      .post(`${API_URL}/cart/save/${uuid}`, cartItems, {
+      .post(`${API_URL}/cart/${uuid}`, cartItems, {
         headers: headers,
         observe: 'response',
       })
@@ -143,14 +158,49 @@ export class ApiService {
   getCartFromUser(uuid: string) {
     return this.http.get(`${API_URL}/cart/${uuid}`).pipe(
       map((data: any) => {
-        return z.array(
-          z.object({
-            size: z.number(),
-            stock: z.number(),
-          })
-        ).parse(data.sizes);
+        return z.object({
+          cartItems: z.array(
+            z.object({
+              id: z.string(),
+              product: z.object({
+                id: z.string(),
+                name: z.string(),
+                image: z.string(),
+                description: z.string(),
+                price: z.number(),
+                sizes: z.array(
+                  z.object({
+                    id: z.string(),
+                    size: z.number(),
+                  })
+                )
+              }),
+              size: z.object({
+                id: z.string(),
+                size: z.number(),
+              }),
+              quantity: z.number()
+            })
+          )
+        }).parse(data);
       })
     )
+  }
+ deleteCart(uuid: string) {
+    let token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${API_URL}/cart/${uuid}`, {
+      headers: headers,
+      observe: 'response'
+    })
+  }
+  checkout(uuid: string, payload: CartPayload[]) {
+    let token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${API_URL}/cart/order/${uuid}`,{
+      headers: headers,
+      observe: 'response'
+    })
   }
 }
 

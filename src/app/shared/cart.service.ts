@@ -15,66 +15,22 @@ export class CartService {
 
   constructor(private http: HttpClient, private authService: AuthService, private apiService: ApiService
   ) {
-    this.loadCartFromSession();
+    this.loadCart
   }
 
   addToCart(product: Product) {
     this.addedItems.push(product);
-    this.saveCart()
-    this.saveCartToSession();
   }
 
   getItems() {
     return this.addedItems;
   }
-
-  clearCart() {
-    this.addedItems = [];
-    this.saveCartToSession();
-    return this.addedItems
-  }
-
-  // }
-  getCartPayload(): CartPayload[] {
-    const payload: CartPayload[] = [];
-    for (let item of this.addedItems) {
-      for (let size of item.sizes) {
-        const existingPayload = payload.find(p => p.sizeId === size.id);
-        if (existingPayload) {
-          existingPayload.quantity++;
-        } else {
-          payload.push(new CartPayload(size.id, 1));
-        }
-      }
-    }
-    console.log(payload)
-    return payload;
+  loadCart(){
 
   }
-
   checkout() {
-    const payload = this.getCartPayload();
+    const payload = this
     return this.http.post(`${API_URL}/cart/order`, payload)
-  }
-  saveCart() {
-    let uuid = this.authService.getUserId(); // You should implement this method in your AuthService
-    if (!uuid) {
-      throw new Error('User ID is null');
-    }
-    let cartItems = this.getItems();
-    return this.apiService.saveCartForUser(uuid, cartItems);
-
-  }
-
-   saveCartToSession() {
-    localStorage.setItem('cart', JSON.stringify(this.addedItems));
-  }
-
-   loadCartFromSession() {
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      this.addedItems = JSON.parse(storedCart);
-    }
   }
 
 }

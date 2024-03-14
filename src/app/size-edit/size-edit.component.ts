@@ -51,7 +51,6 @@ export class SizeEditComponent implements OnInit, OnDestroy {
     this.updatedSizeAndStock = this.sizeAndStock.map(item => {
       return {
         size: item.size,
-        stock: item.stock
       };
     });
     this.apiService.updateSizeAndStock(this.uuid, this.updatedSizeAndStock).subscribe({

@@ -4,27 +4,6 @@
 
       <div *ngFor="let item of sizeAndStock; let i = index">
         <label>{{item.size}}</label>
-<!--        <input-->
-<!--          [(ngModel)]="item.size"-->
-<!--          (click)="removeSizeAndStock(i)"-->
-<!--          autocomplete="off"-->
-<!--          id="size"-->
-<!--          name="size"-->
-<!--          placeholder="Maat"-->
-<!--          required-->
-<!--          type="checkbox"-->
-<!--          [value]="item.size"-->
-<!--        />-->
-        <input
-          [(ngModel)]="item.stock"
-          autocomplete="off"
-          id="stock"
-          name="stock{{i}}"
-          placeholder="Voorraad"
-          required
-          type="number"
-          [value]="item.stock"
-        />
       </div>
       <button type="submit">Log in</button>
     </form>

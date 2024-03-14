@@ -21,6 +21,7 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-b
     RouterOutlet,
     NoopAnimationsModule,
     ToastrModule.forRoot({
+      preventDuplicates: true,
     })
 
   ],

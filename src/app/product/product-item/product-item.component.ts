@@ -2,11 +2,12 @@ import {Component, Input} from '@angular/core';
 import {Product} from "../../product.model";
 import {RouterModule} from "@angular/router";
 import {AdminOnlyDirective} from "../../shared/directives/admin-only.directive";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-product-item',
   standalone: true,
-    imports: [RouterModule, AdminOnlyDirective],
+  imports: [RouterModule, AdminOnlyDirective, NgOptimizedImage],
   templateUrl: './product-item.component.html',
   styleUrl: './product-item.component.scss'
 })

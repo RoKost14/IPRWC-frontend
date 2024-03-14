@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {ApiService} from "../shared/api.service";
 import {Subscription} from "rxjs";
 import {NgForOf} from "@angular/common";
@@ -8,8 +8,11 @@ import {Product} from "../product.model";
 import {ShoppingCartComponent} from "../shopping-cart/shopping-cart.component";
 import {CartService} from "../shared/cart.service";
 import {FormsModule} from "@angular/forms";
-import {OrderService} from "../shared/order.service";
 import {AdminOnlyDirective} from "../shared/directives/admin-only.directive";
+import {CartPayload} from "../cart-payload.model";
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import {ToastrService} from "ngx-toastr";
+import {AuthService} from "../shared/auth.service";
 
 @Component({
   selector: 'app-product-details',
@@ -31,9 +34,11 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private apiService: ApiService,
+    private authService: AuthService,
     private cartService: CartService,
-    private orderService: OrderService
+    private toastr: ToastrService
   ) {
   }
 
@@ -59,22 +64,31 @@ export class ProductDetailsComponent implements OnInit {
       return;
     }
   }
-  addToCart(selectedSizeId: string) {
-    const selectedSize = this.product.sizes.find(size => size.id === selectedSizeId);
-    if (!selectedSize) {
-      return;
-    }
-    if (selectedSize.stock > 0) {
-      const productWithSelectedSize = {...this.product};
-      productWithSelectedSize.sizes = [selectedSize];
-      this.cartService.addToCart(productWithSelectedSize);
-      this.cartService.saveCart()
-      this.cartService.saveCartToSession()
+  addToCart(sizeId : string) {
+    const selectedSize = this.product.sizes.find(size => size.id === sizeId)
+    if (!this.authService.isAuthenticated()) {
+      this.toastr.warning('You need to be logged in', 'Warning')
+      this.router.navigate(['/login'])
     } else {
-      console.log("Product is niet op voorraad")
-      return
+      if (selectedSize) {
+        const cartPayload = new CartPayload(this.product, selectedSize, 1)
+        const userId = localStorage.getItem('userId')
+        if (userId != null) {
+          this.apiService.addItemToCart(userId, cartPayload).subscribe({
+            next: (data) => {
+              console.log(cartPayload)
+              this.toastr.success('Login successful', 'Success');
+            },
+            error: (error) => {
+              console.error(error);
+              this.toastr.error('Invalid username or password', 'Error');
+            },
+          })
+        }
+      } else {
+        console.error('Size not found');
+      }
     }
+
   }
-
-
 }

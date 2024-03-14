@@ -1,16 +1,10 @@
 <div class="main">
   <div class="cart-container">
-    <h1>
-      Your Shopping Cart
-    </h1>
-    <div class="cart-items" *ngFor="let item of addedItems">
-      {{ item.name }}
-      {{ item.sizes[0].size }}
-      {{ item.description }}
-      {{ item.price }}
-    </div>
-    <p>Totaal: €{{getTotalPrice()}}</p>
-    <button class="clear-items-button" (click)="clearCart()">Clear Items</button>
+    <main>
+      <section *ngFor="let item of addedItems">
+        <app-product-item [product]="item.product"></app-product-item>
+      </section>
+    </main><button class="clear-items-button" (click)="clearCart()">Clear Items</button>
     <button class="buy" (click)="checkout()">Buy</button>
   </div>
 </div>

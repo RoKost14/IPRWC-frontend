@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../shared/auth.service";
 import {RouterModule} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-account',
@@ -13,7 +14,7 @@ export class AccountComponent implements OnInit{
   public username: string = ""
   public role: string= ""
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private toastr: ToastrService){
   }
 
   ngOnInit() {
@@ -26,5 +27,6 @@ export class AccountComponent implements OnInit{
   }
   logout(){
     this.authService.logOut()
+    this.toastr.success('Logged Out', 'Success');
   }
 }

@@ -10,6 +10,7 @@ import {SizeEditComponent} from "./size-edit/size-edit.component";
 import {AccountComponent} from "./account/account.component";
 import {RegisterComponent} from "./register/register.component";
 import {adminGuard} from "./shared/guards/admin.guard";
+import {ProductEditComponent} from "./product/product-edit/product-edit.component";
 
 export const routes: Routes = [
   {
@@ -43,8 +44,8 @@ export const routes: Routes = [
         canActivate: [adminGuard]
       },
       {
-        path: 'sizes/edit/:uuid',
-        component: SizeEditComponent,
+        path: 'product/edit/:uuid',
+        component: ProductEditComponent,
         canActivate: [adminGuard]
       },
       {

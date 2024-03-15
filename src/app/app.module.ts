@@ -6,6 +6,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from "@angular/platform-browser";
 import {AppComponent} from "./app.component";
 import {ToastrModule} from "ngx-toastr";
+import { LucideAngularModule, Trash } from 'lucide-angular';
+
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 
 
@@ -18,6 +20,7 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-b
     CommonModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    LucideAngularModule.pick({Trash}),
     RouterOutlet,
     NoopAnimationsModule,
     ToastrModule.forRoot({

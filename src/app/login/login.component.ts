@@ -35,7 +35,6 @@ export class LoginComponent {
 
         },
         error: (error) => {
-          console.error(error);
           this.toastr.error('Invalid username or password', 'Error');
         },
       });

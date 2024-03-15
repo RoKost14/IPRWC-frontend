@@ -41,7 +41,6 @@ export class ShoppingCartComponent implements OnInit {
 
   loadItems() {
     const userId = localStorage.getItem('userId');
-    console.log(userId)
     if (userId !== null) {
       this.apiService.getCartFromUser(userId).subscribe({
         next: (data) => {
@@ -78,8 +77,9 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   checkout() {
+    const totalPrice = this.getTotalPrice();
     if (this.addedItems.length != 0 && this.userId !== null) {
-      this.apiService.checkout(this.userId, this.orderPayload).subscribe({
+      this.apiService.checkout(this.userId, this.addedItems).subscribe({
         next: (data) => {
           this.toastr.success('Order Placed', 'Success');
           this.router.navigate(['']);

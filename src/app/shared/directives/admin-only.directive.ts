@@ -14,7 +14,6 @@ export class AdminOnlyDirective {
     const isAdmin = this.authService.isAdmin();
     if (isAdmin) {
       this.viewContainer.createEmbeddedView(this.templateRef);
-      console.log(isAdmin)
     } else {
       this.viewContainer.clear();
     }

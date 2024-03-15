@@ -39,7 +39,6 @@ export class SizeCreateComponent implements OnInit{
   ngOnInit(){
     this.route.params.subscribe(params => {
       this.productId = params['uuid'];
-      console.log(this.productId)
     });
     this.populateSizeArray()
   }

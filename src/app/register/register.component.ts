@@ -26,7 +26,6 @@ export class RegisterComponent {
         this.router.navigate(['/login']);
       },
       error: (error) => {
-        console.error(error);
         this.toastr.error('Invalid username or password', 'Error');
       },
     })

@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {Size} from "../size.model";
-import {SizeCreate} from "../size-create.model";
 import {ApiService} from "../shared/api.service";
-import {ProductComponent} from "../product/product.component";
 import {ToastrService} from "ngx-toastr";
 import {Router, RouterModule} from "@angular/router";
 
@@ -28,6 +25,13 @@ export class ProductCreateComponent {
   constructor(private apiService: ApiService, private toastr: ToastrService, private router: Router) {
   }
   createProduct(){
+    if(this.price < 0){
+      this.toastr.error('Invalid price', 'Error');
+      return;
+    }
+    if(this.image == ""){
+      this.image = "https://cdn.discordapp.com/attachments/1217066891856576595/1217960687389638656/missing-image-no-available-concept-vector-23623630.jpg?ex=6605ed48&is=65f37848&hm=2afdb5a9b9bd8c1734f8b018220061d66ccd237a851fa1484c8b9c0d869830cc&"
+    }
     this.apiService.createProduct({name: this.name, description: this.description, price: this.price, image: this.image})
       .subscribe({
       next: (data) => {

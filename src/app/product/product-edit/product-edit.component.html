@@ -1,18 +1,15 @@
 <div class="main-container">
-  <div class="create-container">
-    <form class="creae-form" (ngSubmit)="editProduct()">
+  <div class="edit-container">
+    <form class="edit-form" (ngSubmit)="editProduct()">
       <label for="name">Titel</label>
       <input
         type="text"
         id="name"
         name="name"
-
         placeholder="Title"
         [(ngModel)]="name"
         autocomplete="name"
         required
-
-
       />
 
       <label for="description">Beschrijving</label>
@@ -45,12 +42,12 @@
         autocomplete="off"
         placeholder="URL"
       />
-      <figure>
-        <img class="shopping-cart" src="/assets/shopping-cart.png" alt="shopping-cart" (click)="deleteProduct()">
-      </figure>
-
-
-      <button type="submit">Log in</button>
+      <div class="edit-buttons">
+        <button type="submit" (click)="deleteProduct()">
+          <lucide-icon name="trash"></lucide-icon>
+        </button>
+        <button type="submit">Bewerk</button>
+      </div>
     </form>
   </div>
 </div>

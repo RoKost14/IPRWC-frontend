@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
     "http": "^0.0.1-security",
+    "lucide": "^0.358.0",
+    "lucide-angular": "^0.358.0",
     "ngx-toastr": "^18.0.0",
     "rxjs": "~7.8.0",
     "toastr": "^2.1.4",

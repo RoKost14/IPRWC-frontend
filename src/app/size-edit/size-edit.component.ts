@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {NgForOf} from "@angular/common";
 import {ApiService} from "../shared/api.service";
@@ -6,10 +6,7 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute, Router, RouterModule} from "@angular/router";
 import {SizeCreate} from "../size-create.model";
 
-interface SizeAndStock {
-  size: number;
-  stock: number;
-}
+
 
 @Component({
   selector: 'app-size-edit',
@@ -22,7 +19,7 @@ interface SizeAndStock {
   templateUrl: './size-edit.component.html',
   styleUrl: './size-edit.component.scss'
 })
-export class SizeEditComponent implements OnInit, OnDestroy {
+export class SizeEditComponent implements OnInit{
   uuid: string = ""
   routeSub!: Subscription;
   public sizeAndStock: SizeCreate[] = []
@@ -36,14 +33,10 @@ export class SizeEditComponent implements OnInit, OnDestroy {
     });
 
     this.apiService.getSizeAndStock(this.uuid).subscribe({
-      next: (data: SizeCreate[]) =>{
+      next: (data: SizeCreate[]) => {
         this.sizeAndStock = data
-        console.log(this.sizeAndStock)
 
-      },
-      error: (error) => {
-        console.error(error);
-      },
+      }
     });
   }
 
@@ -64,12 +57,5 @@ export class SizeEditComponent implements OnInit, OnDestroy {
     });
 
   }
-  removeSizeAndStock(index: number){
-    this.sizeAndStock.splice(index, 1);
-  }
-  ngOnDestroy() {
-    if (this.routeSub) {
-      this.routeSub.unsubscribe(); // Unsubscribe when the component is destroyed
-    }
-  }
 }
+

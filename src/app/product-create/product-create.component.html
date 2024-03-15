@@ -1,12 +1,11 @@
 <div class="main-container">
   <div class="create-container">
-    <form class="creae-form" (ngSubmit)="createProduct()">
-      <label for="name">Titel</label>
+    <form class="create-form" (ngSubmit)="createProduct()">
+      <label for="name">Product naam</label>
       <input
         type="text"
         id="name"
         name="name"
-        placeholder="Title"
         [(ngModel)]="name"
         autocomplete="name"
         required
@@ -20,7 +19,6 @@
         required
         [(ngModel)]="description"
         autocomplete="off"
-        placeholder="Beschrijving"
       />
       <label for="price">Prijs</label>
       <input
@@ -30,7 +28,6 @@
         required
         [(ngModel)]="price"
         autocomplete="off"
-        placeholder="price"
       />
       <label for="image">Afbeelding URL</label>
       <input
@@ -40,11 +37,10 @@
         required
         [(ngModel)]="image"
         autocomplete="off"
-        placeholder="price"
       />
 
 
-      <button type="submit">Log in</button>
+      <button type="submit">Voeg toe</button>
     </form>
   </div>
 </div>

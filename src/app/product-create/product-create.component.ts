@@ -3,14 +3,16 @@ import {FormsModule} from "@angular/forms";
 import {ApiService} from "../shared/api.service";
 import {ToastrService} from "ngx-toastr";
 import {Router, RouterModule} from "@angular/router";
+import {LucideAngularModule} from "lucide-angular";
 
 @Component({
   selector: 'app-product-create',
   standalone: true,
-  imports: [
-    FormsModule,
-    RouterModule
-  ],
+    imports: [
+        FormsModule,
+        RouterModule,
+        LucideAngularModule
+    ],
   templateUrl: './product-create.component.html',
   styleUrl: './product-create.component.scss'
 })
@@ -23,6 +25,10 @@ export class ProductCreateComponent {
 
 
   constructor(private apiService: ApiService, private toastr: ToastrService, private router: Router) {
+
+  }
+  back(){
+    this.router.navigate(['']);
   }
   createProduct(){
     if(this.price < 0){

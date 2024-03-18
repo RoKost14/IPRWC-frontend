@@ -61,6 +61,9 @@ export class ProductEditComponent implements OnInit{
       },
     });
   }
+  back(){
+    this.router.navigate(['']);
+  }
 
   deleteProduct(){
   if (window.confirm('Weet je zeker dat je dit product wilt verwijderen? Dit kan niet ongedaan worden gemaakt.')) {

@@ -4,7 +4,11 @@
       <section *ngFor="let item of addedItems">
         <app-product-item [product]="item.product"></app-product-item>
       </section>
-    </main><button class="clear-items-button" (click)="clearCart()">Clear Items</button>
-    <button class="buy" (click)="checkout()">Buy</button>
+    </main>
+    <div class="buttons">
+    <button class="clear-items-button" (click)="clearCart()">Clear Items</button>
+      <button class="buy" (click)="checkout()">Buy</button>
+      <p>Totaal: €  {{getTotalPrice()}}</p>
+    </div>
   </div>
 </div>

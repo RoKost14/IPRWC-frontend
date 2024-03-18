@@ -1,16 +1,41 @@
 .main{
-  background: #5B9E48;
   margin-top: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.cart-container{
+.cart-container {
   justify-content: center;
-  display: flex;
-  flex-direction: column;
-
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-self: center;
-  //justify-self: center;
 
+}
+  .product-card{
+  margin-bottom: 20px;
+}
+
+
+
+.buttons{
+  p{
+    font-size: larger;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  flex-direction: column;
+  button{
+    margin-top: 1rem;
+    align-items: center;
+    border: none;
+    width: 50%;
+    padding: 10px;
+    border-radius: 1rem;
+    background-color: #5B9E48;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
 }

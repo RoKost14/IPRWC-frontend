@@ -1,0 +1,24 @@
+.create-size-container {
+  display: flex;
+  margin-top: 20%;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+}
+
+button{
+  //margin-top: 1rem;
+  align-items: center;
+  border: none;
+  border-radius: 1rem;
+  background-color: #5B9E48;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.size-form{
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Twee kolommen met gelijke breedte */
+  gap: 10px; /* Ruimte tussen kolommen */
+}

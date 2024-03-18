@@ -99,6 +99,11 @@ $border-radius: 1rem;
     font-size: 3rem;
   }
 
+  .back-button{
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
   label {
     margin-left: 1rem;
     margin-bottom: 0.4rem;
@@ -109,4 +114,6 @@ $border-radius: 1rem;
       display: none;
     }
   }
+
+
 }
